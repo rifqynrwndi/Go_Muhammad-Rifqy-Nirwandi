@@ -1,2 +1,3 @@
 ini dari fitur A
 ini salah satu fitur B
+konflik dari fitur B
