@@ -1,1 +1,1 @@
-# Version Control System
+# Problem Solving Paradigm – Brute Force Greedy and Dynamic Programming

@@ -1,1 +1,1 @@
-# Version Control System
+# Join – Union – Agregasi – Subquery – Function (DBMS)
