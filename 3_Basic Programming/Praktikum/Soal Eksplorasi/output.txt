@@ -1,0 +1,9 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Eksplorasi> go run 1.go
+Kata pertama: kasur 
+Kata kedua: rusak
+Anagram
+
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Eksplorasi> go run 1.go 
+Kata pertama: mouse
+Kata kedua: tikus
+Bukan Anagram

@@ -1,0 +1,9 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 1\2> go run 2.go
+Masukkan nilai: 70
+Nilai B
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 1\2> go run 2.go
+Masukkan nilai: 100
+Nilai A
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 1\2> go run 2.go
+Masukkan nilai: 43
+Nilai D

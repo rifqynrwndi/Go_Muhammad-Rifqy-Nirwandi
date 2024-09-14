@@ -1,0 +1,7 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 2\1> go run 1.go
+26
+OIOI
+
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 2\1> go run 1.go
+100
+OIIOIIOII

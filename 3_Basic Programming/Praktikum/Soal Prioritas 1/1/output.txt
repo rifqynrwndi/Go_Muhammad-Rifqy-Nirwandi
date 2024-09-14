@@ -1,0 +1,4 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 1\1> go run 1.go
+Masukkan jari-jari: 12
+Masukkan tinggi: 24
+Volume tabung: 10851.84

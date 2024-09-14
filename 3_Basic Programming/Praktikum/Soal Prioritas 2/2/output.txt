@@ -1,0 +1,11 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 2\2> go run 2.go
+Masukkan budget: 40
+Masukkan waktu pengerjaan: 25
+Masukkan tingkat kesulitan: 5
+Output: Medium
+
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\3_Basic Programming\Praktikum\Soal Prioritas 2\2> go run 2.go
+Masukkan budget: 51
+Masukkan waktu pengerjaan: 10
+Masukkan tingkat kesulitan: 3
+Output: High
