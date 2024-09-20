@@ -1,0 +1,4 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\4_Data Structure\Praktikum\Soal Prioritas 2\1> go run 1.go
+[1 5 2 4 3]
+[6 8 7]
+[8 1 5 2 4 3]

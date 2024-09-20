@@ -1,0 +1,4 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\4_Data Structure\Praktikum\Soal Eksplorasi> go run 1.go
+Average Mentor Satisfaction Score: 8.64
+Average Learning Satisfaction Score: 7.80
+Course with Highest Average Mentor Satisfaction: Course E (9.33)

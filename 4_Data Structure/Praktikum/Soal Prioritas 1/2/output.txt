@@ -1,0 +1,4 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\4_Data Structure\Praktikum\Soal Prioritas 1\2> go run 2.go
+26
+95
+0
