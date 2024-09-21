@@ -1,0 +1,6 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\5_Time Complexity & Space Complexity\Praktikum\Soal Eksplorasi\1> go run 1.go
+true
+true
+true
+false
+false
