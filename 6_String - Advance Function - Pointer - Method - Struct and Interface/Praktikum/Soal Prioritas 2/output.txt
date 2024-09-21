@@ -1,0 +1,9 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\6_String - Advance Function - Pointer - Method - Struct and Interface\Praktikum\Soal Prioritas 2> go run main.go
+Nama: Rifqy , Alamat: Gunungpati
+Nama: Mulyono , Alamat: Solo
+Mobil Disewa untuk Rifqy
+- Honda Civic , Harga Rental: 300000
+Mobil Disewa untuk Mulyono
+- Toyota Avanza , Harga Rental: 500000
+Rifqy Mengembalikan Mobil Civic
+Mobil Disewa untuk Rifqy

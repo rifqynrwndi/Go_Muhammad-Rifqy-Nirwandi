@@ -1,0 +1,5 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\6_String - Advance Function - Pointer - Method - Struct and Interface\Praktikum\Soal Prioritas 1\2> go run 2.go
+aalt
+aalrtre
+saesplu
+PS D:\Tugas\Seme

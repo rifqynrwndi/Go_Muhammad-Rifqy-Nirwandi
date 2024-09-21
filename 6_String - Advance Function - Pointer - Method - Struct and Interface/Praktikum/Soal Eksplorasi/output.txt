@@ -1,0 +1,6 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\6_String - Advance Function - Pointer - Method - Struct and Interface\Praktikum\Soal Eksplorasi> go run main.go
+true
+[civic avanza brio lamborghini]
+lamborghini true
+[civic avanza brio]
+false
