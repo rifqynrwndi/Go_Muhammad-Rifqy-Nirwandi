@@ -1,0 +1,5 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\7_Recursive - Number Theory - Sorting - Searching\Praktikum\Soal Prioritas 1\2> go run 2.go
+best student in math: aziz with 100
+best student in science: jamie with 88
+best student in english: jamie with 90
+best student in average: aziz with 84

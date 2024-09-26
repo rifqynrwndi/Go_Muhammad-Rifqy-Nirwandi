@@ -1,0 +1,3 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\7_Recursive - Number Theory - Sorting - Searching\Praktikum\Soal Eksplorasi\2> go run 2.go
+[40 30 10]
+[50 25 25]

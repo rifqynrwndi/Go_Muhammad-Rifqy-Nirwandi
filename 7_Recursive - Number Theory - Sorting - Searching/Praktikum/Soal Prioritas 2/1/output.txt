@@ -1,0 +1,3 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\7_Recursive - Number Theory - Sorting - Searching\Praktikum\Soal Prioritas 2\1> go run 1.go
+429
+16796
