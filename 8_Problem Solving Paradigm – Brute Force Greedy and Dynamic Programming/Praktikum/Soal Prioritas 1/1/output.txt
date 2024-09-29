@@ -1,0 +1,3 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\8_Problem Solving Paradigm – Brute Force Greedy and Dynamic Programming\Praktikum\Soal Prioritas 1\1> go run main.go
+[0 1 10]
+[0 1 10 11]
