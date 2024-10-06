@@ -1,0 +1,6 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\11_Concurrent Programming\Praktikum\Soal Prioritas 1\1> go run main.go
+r
+ru
+rus
+rusa
+rusak

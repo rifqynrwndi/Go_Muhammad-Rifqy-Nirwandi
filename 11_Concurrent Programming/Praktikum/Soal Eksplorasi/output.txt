@@ -1,0 +1,72 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\11_Concurrent Programming\Praktikum\Soal Eksplorasi> go run main.go
+Users:
+====
+ID: 1
+Username: johnd
+Email: john@gmail.com
+First name: john
+Last name: doe
+====
+====
+ID: 2
+Username: mor_2314
+Email: morrison@gmail.com
+First name: david
+Last name: morrison
+====
+====
+ID: 3
+Username: kevinryan
+Email: kevin@gmail.com
+First name: kevin
+Last name: ryan
+====
+====
+ID: 4
+Username: donero
+Email: don@gmail.com
+First name: don
+Last name: romer
+====
+====
+ID: 5
+Username: derek
+Email: derek@gmail.com
+First name: derek
+Last name: powell
+====
+====
+ID: 6
+Username: david_r
+Email: david_r@gmail.com
+First name: david
+Last name: russell
+====
+====
+ID: 7
+Username: snyder
+Email: miriam@gmail.com
+First name: miriam
+Last name: snyder
+====
+====
+ID: 8
+Username: hopkins
+Email: william@gmail.com
+First name: william
+Last name: hopkins
+====
+====
+ID: 9
+Username: kate_h
+Email: kate@gmail.com
+First name: kate
+Last name: hale
+====
+====
+ID: 10
+Username: jimmie_k
+Email: jimmie@gmail.com
+First name: jimmie
+Last name: klein
+====
