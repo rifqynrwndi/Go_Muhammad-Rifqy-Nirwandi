@@ -1,0 +1,6 @@
+PS D:\Tugas\Semester 5\Alterra\GolangLatihan\5_Time Complexity - Space Complexity\Praktikum\2> go run 2.go   
+8
+125
+100
+32
+343
