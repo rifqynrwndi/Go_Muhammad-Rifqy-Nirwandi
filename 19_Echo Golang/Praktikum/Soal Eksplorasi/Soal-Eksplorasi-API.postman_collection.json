@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "e2a6ab14-9a49-4646-9b9e-5d19806014f0",
+		"name": "Soal-Eksplorasi-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30501877"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/words",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get word",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/words/aeb9fc43-54ec-40e7-aec4-cd0de412e568",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"words",
+						"aeb9fc43-54ec-40e7-aec4-cd0de412e568"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post word",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t\r\n{\r\n    \"word\": \"bottle\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/words",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete word",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t\r\n{\r\n    \"word\": \"pouch\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/words/b8eeb047-cfe8-4441-b940-5fa3e82ef99f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"words",
+						"b8eeb047-cfe8-4441-b940-5fa3e82ef99f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

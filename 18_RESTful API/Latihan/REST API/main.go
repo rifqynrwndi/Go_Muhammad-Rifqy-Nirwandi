@@ -3,7 +3,6 @@ package main
 import (
 	"rest/config"
 	"rest/controllers"
-
 	"github.com/labstack/echo/v4"
 )
 
