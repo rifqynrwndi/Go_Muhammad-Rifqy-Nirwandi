@@ -1,17 +1,21 @@
 package routes
 
 import (
-    "database/sql"
-    "github.com/labstack/echo/v4"
-    "app/controllers"
+	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
+	"app/controllers"
 )
 
-func SetupRoutes(e *echo.Echo, db *sql.DB) {
-    controllers.InitializeDB(db)
+func SetupRoutes(db *gorm.DB) *echo.Echo {
+	e := echo.New()
 
-    e.GET("/api/v1/packages", controllers.GetAllPackages)
-    e.GET("/api/v1/packages/:id", controllers.GetPackageByID)
-    e.POST("/api/v1/packages", controllers.CreatePackage)
-    e.PUT("/api/v1/packages/:id", controllers.UpdatePackage)
-    e.DELETE("/api/v1/packages/:id", controllers.DeletePackage)
+	packageController := controllers.PackageController{DB: db}
+
+	e.GET("/api/v1/packages", packageController.GetAllPackages)
+	e.GET("/api/v1/packages/:id", packageController.GetPackageByID)
+	e.POST("/api/v1/packages", packageController.CreatePackage)
+	e.PUT("/api/v1/packages/:id", packageController.UpdatePackage)
+	e.DELETE("/api/v1/packages/:id", packageController.DeletePackage)
+
+	return e
 }

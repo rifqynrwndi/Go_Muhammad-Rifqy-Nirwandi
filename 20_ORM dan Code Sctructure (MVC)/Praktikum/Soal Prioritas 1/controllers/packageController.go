@@ -1,79 +1,59 @@
 package controllers
 
 import (
-	"app/models"
-	"database/sql"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
+	"app/models"
 )
 
-var db *sql.DB
-
-func InitializeDB(database *sql.DB) {
-    db = database
+type PackageController struct {
+	DB *gorm.DB
 }
 
-func GetAllPackages(c echo.Context) error {
-    rows, err := db.Query("SELECT * FROM packages")
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Unable to fetch packages"})
-    }
-    defer rows.Close()
-
-    packages := []models.Package{}
-    for rows.Next() {
-        var pkg models.Package
-        if err := rows.Scan(&pkg.ID, &pkg.Name, &pkg.Sender, &pkg.Receiver, &pkg.SenderLocation, &pkg.ReceiverLocation, &pkg.Fee, &pkg.Weight); err != nil {
-            return err
-        }
-        packages = append(packages, pkg)
-    }
-    return c.JSON(http.StatusOK, packages)
+func (pc *PackageController) GetAllPackages(c echo.Context) error {
+	var packages []models.Package
+	pc.DB.Find(&packages)
+	return c.JSON(http.StatusOK, packages)
 }
 
-func GetPackageByID(c echo.Context) error {
-    id := c.Param("id")
-    var pkg models.Package
-    err := db.QueryRow("SELECT * FROM packages WHERE id = ?", id).Scan(&pkg.ID, &pkg.Name, &pkg.Sender, &pkg.Receiver, &pkg.SenderLocation, &pkg.ReceiverLocation, &pkg.Fee, &pkg.Weight)
-    if err != nil {
-        return c.JSON(http.StatusNotFound, echo.Map{"error": "Package not found"})
-    }
-    return c.JSON(http.StatusOK, pkg)
+func (pc *PackageController) GetPackageByID(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var pack models.Package
+	if err := pc.DB.First(&pack, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "package not found"})
+	}
+	return c.JSON(http.StatusOK, pack)
 }
 
-func CreatePackage(c echo.Context) error {
-    var pkg models.Package
-    if err := c.Bind(&pkg); err != nil {
-        return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid request"})
-    }
-    result, err := db.Exec("INSERT INTO packages (name, sender, receiver, sender_location, receiver_location, fee, weight) VALUES (?, ?, ?, ?, ?, ?, ?)", pkg.Name, pkg.Sender, pkg.Receiver, pkg.SenderLocation, pkg.ReceiverLocation, pkg.Fee, pkg.Weight)
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to create package"})
-    }
-    id, _ := result.LastInsertId()
-    pkg.ID = int(id)
-    return c.JSON(http.StatusCreated, pkg)
+func (pc *PackageController) CreatePackage(c echo.Context) error {
+	pack := new(models.Package)
+	if err := c.Bind(pack); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	pc.DB.Create(pack)
+	return c.JSON(http.StatusCreated, pack)
 }
 
-func UpdatePackage(c echo.Context) error {
-    id := c.Param("id")
-    var pkg models.Package
-    if err := c.Bind(&pkg); err != nil {
-        return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid request"})
-    }
-    _, err := db.Exec("UPDATE packages SET name = ?, sender = ?, receiver = ?, sender_location = ?, receiver_location = ?, fee = ?, weight = ? WHERE id = ?", pkg.Name, pkg.Sender, pkg.Receiver, pkg.SenderLocation, pkg.ReceiverLocation, pkg.Fee, pkg.Weight, id)
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to update package"})
-    }
-    return c.JSON(http.StatusOK, pkg)
+func (pc *PackageController) UpdatePackage(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var pack models.Package
+	if err := pc.DB.First(&pack, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "package not found"})
+	}
+	if err := c.Bind(&pack); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	pc.DB.Save(&pack)
+	return c.JSON(http.StatusOK, pack)
 }
 
-func DeletePackage(c echo.Context) error {
-    id := c.Param("id")
-    _, err := db.Exec("DELETE FROM packages WHERE id = ?", id)
-    if err != nil {
-        return c.JSON(http.StatusNotFound, echo.Map{"error": "Package not found"})
-    }
-    return c.JSON(http.StatusOK, echo.Map{"message": "Deleted successfully"})
+func (pc *PackageController) DeletePackage(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	if err := pc.DB.Delete(&models.Package{}, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "package not found"})
+	}
+	return c.NoContent(http.StatusNoContent)
 }

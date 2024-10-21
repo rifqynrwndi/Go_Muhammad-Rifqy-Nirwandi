@@ -1,78 +1,59 @@
 package controllers
 
 import (
-    "database/sql"
-    "net/http"
-    "github.com/labstack/echo/v4"
-    "billing/models"
+	"net/http"
+	"strconv"
+
+	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
+	"billing/models"
 )
 
-var db *sql.DB
-
-func InitializeDB(database *sql.DB) {
-    db = database
+type PaymentController struct {
+	DB *gorm.DB
 }
 
-func GetAllPayments(c echo.Context) error {
-    rows, err := db.Query("SELECT * FROM payments")
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Unable to fetch payments"})
-    }
-    defer rows.Close()
-
-    payments := []models.Payment{}
-    for rows.Next() {
-        var payment models.Payment
-        if err := rows.Scan(&payment.ID, &payment.Title, &payment.Description, &payment.Amount); err != nil {
-            return err
-        }
-        payments = append(payments, payment)
-    }
-    return c.JSON(http.StatusOK, payments)
+func (pc *PaymentController) GetAllPayments(c echo.Context) error {
+	var payments []models.Payment
+	pc.DB.Find(&payments)
+	return c.JSON(http.StatusOK, payments)
 }
 
-func GetPaymentByID(c echo.Context) error {
-    id := c.Param("id")
-    var payment models.Payment
-    err := db.QueryRow("SELECT * FROM payments WHERE id = ?", id).Scan(&payment.ID, &payment.Title, &payment.Description, &payment.Amount)
-    if err != nil {
-        return c.JSON(http.StatusNotFound, echo.Map{"error": "Payment not found"})
-    }
-    return c.JSON(http.StatusOK, payment)
+func (pc *PaymentController) GetPaymentByID(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var payment models.Payment
+	if err := pc.DB.First(&payment, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "payment not found"})
+	}
+	return c.JSON(http.StatusOK, payment)
 }
 
-func CreatePayment(c echo.Context) error {
-    var payment models.Payment
-    if err := c.Bind(&payment); err != nil {
-        return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid request"})
-    }
-    result, err := db.Exec("INSERT INTO payments (title, description, amount) VALUES (?, ?, ?)", payment.Title, payment.Description, payment.Amount)
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to create payment"})
-    }
-    id, _ := result.LastInsertId()
-    payment.ID = int(id)
-    return c.JSON(http.StatusCreated, payment)
+func (pc *PaymentController) CreatePayment(c echo.Context) error {
+	payment := new(models.Payment)
+	if err := c.Bind(payment); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	pc.DB.Create(payment)
+	return c.JSON(http.StatusCreated, payment)
 }
 
-func UpdatePayment(c echo.Context) error {
-    id := c.Param("id")
-    var payment models.Payment
-    if err := c.Bind(&payment); err != nil {
-        return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid request"})
-    }
-    _, err := db.Exec("UPDATE payments SET title = ?, description = ?, amount = ? WHERE id = ?", payment.Title, payment.Description, payment.Amount, id)
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to update payment"})
-    }
-    return c.JSON(http.StatusOK, payment)
+func (pc *PaymentController) UpdatePayment(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var payment models.Payment
+	if err := pc.DB.First(&payment, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "payment not found"})
+	}
+	if err := c.Bind(&payment); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	pc.DB.Save(&payment)
+	return c.JSON(http.StatusOK, payment)
 }
 
-func DeletePayment(c echo.Context) error {
-    id := c.Param("id")
-    _, err := db.Exec("DELETE FROM payments WHERE id = ?", id)
-    if err != nil {
-        return c.JSON(http.StatusNotFound, echo.Map{"error": "Payment not found"})
-    }
-    return c.JSON(http.StatusOK, echo.Map{"message": "Deleted successfully"})
+func (pc *PaymentController) DeletePayment(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	if err := pc.DB.Delete(&models.Payment{}, id).Error; err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "payment not found"})
+	}
+	return c.NoContent(http.StatusNoContent)
 }

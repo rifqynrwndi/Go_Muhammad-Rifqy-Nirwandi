@@ -1,32 +1,14 @@
 package main
 
 import (
-	"database/sql"
-	"log"
-
+	"app/config"
 	"app/routes"
-
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/labstack/echo/v4"
 )
 
-func initDB() (*sql.DB, error) {
-    db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/app_db")
-    if err != nil {
-        return nil, err
-    }
-    return db, nil
-}
-
 func main() {
-    db, err := initDB()
-    if err != nil {
-        log.Fatal("Failed to connect to database:", err)
-    }
-    defer db.Close()
+	db := config.SetupDatabaseConnection()
+	defer config.CloseDatabaseConnection(db)
 
-    e := echo.New()
-    routes.SetupRoutes(e, db)
-
-    log.Fatal(e.Start(":8000"))
+	r := routes.SetupRoutes(db)
+	r.Logger.Fatal(r.Start(":8080"))
 }
