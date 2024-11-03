@@ -1,6 +1,3 @@
-Berikut adalah versi teks Anda yang telah diformat ke dalam Markdown:
-
-```markdown
 # Compute Service
 
 ## Docker
